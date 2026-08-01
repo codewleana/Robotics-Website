@@ -1,19 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LCISD Robotics</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foster Falcons Robotics — Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --ink:#0e1412;
+    --falcon-green:#146c43;
+    --falcon-green-bright:#1f9d5a;
+    --falcon-gold:#e0bd1f;
+    --steel:#6b7472;
+    --line:#e4e7e5;
+    --header-bg: var(--falcon-green);
+    --header-fg: #ffffff;
+    --header-accent: var(--falcon-gold);
+  }
 
-    <link rel="stylesheet" href="styles.css">
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Rajdhani',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    margin:0;
+  }
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:.03em;
+  }
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--falcon-green-bright); outline-offset:3px;}
+
+  /* ---------- HEADER (theme-swappable) ---------- */
+  .site-header{
+    background:var(--header-bg);
+    color:var(--header-fg);
+    padding:18px clamp(20px,5vw,56px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    transition:background .35s ease;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .brand svg{ width:44px; height:34px; display:block; }
+  .brand-text{ line-height:1; }
+  .brand-text .name{
+    font-size:clamp(18px,2.6vw,24px);
+    font-weight:700;
+  }
+  .brand-text .tag{
+    font-size:11px;
+    font-weight:500;
+    color:var(--header-accent);
+    letter-spacing:.18em;
+    margin-top:3px;
+  }
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:clamp(60px,10vw,120px) clamp(20px,5vw,56px) clamp(50px,8vw,90px);
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-watermark{
+    position:absolute;
+    right:-40px;
+    top:50%;
+    transform:translateY(-50%);
+    width:min(46vw,520px);
+    opacity:.06;
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--falcon-green);
+    letter-spacing:.16em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--falcon-gold);
+    display:inline-block;
+  }
+  h1.hero-title{
+    font-size:clamp(42px,7.5vw,88px);
+    font-weight:700;
+    line-height:.96;
+    max-width:14ch;
+  }
+  h1.hero-title em{
+    font-style:normal;
+    color:var(--falcon-green);
+  }
+  .hero-sub{
+    max-width:46ch;
+    font-size:clamp(15px,1.6vw,18px);
+    color:var(--steel);
+    margin-top:22px;
+    line-height:1.6;
+  }
+  .stat-row{
+    display:flex;
+    gap:clamp(24px,4vw,56px);
+    margin-top:44px;
+    flex-wrap:wrap;
+  }
+  .stat{ border-left:2px solid var(--falcon-gold); padding-left:14px; }
+  .stat .num{ font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:500; }
+  .stat .lbl{ font-size:11px; color:var(--steel); letter-spacing:.1em; text-transform:uppercase; margin-top:4px; }
+
+  
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="identity">
-            <h1 class="team-name">Furious Falcons<br>Robotics</h1>
-            <img src="images/team-logo.png" alt="Furious Falcon Logo">
-        </div>      
+
+<header class="site-header" id="siteHeader">
+  <div class="brand">
+    <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M60 8 L67 26 L60 34 L53 26 Z" fill="currentColor"/>
+      <path d="M53 26 L10 52 L32 58 L58 46 Z" fill="currentColor"/>
+      <path d="M67 26 L110 52 L88 58 L62 46 Z" fill="currentColor"/>
+      <g stroke="var(--header-accent)" stroke-width="2" fill="none">
+        <path d="M10 52 L2 52 L2 44"/>
+        <path d="M110 52 L118 52 L118 60"/>
+        <path d="M60 34 L60 20"/>
+      </g>
+      <circle cx="2" cy="44" r="2.5" fill="var(--header-accent)"/>
+      <circle cx="118" cy="60" r="2.5" fill="var(--header-accent)"/>
+      <circle cx="60" cy="20" r="2.5" fill="var(--header-accent)"/>
+    </svg>
+    <div class="brand-text">
+      <div class="name">Furious Falcons</div>
+      <div class="tag">Robotics Team</div>
     </div>
+  </div>
+
+</header>
+
+<main>
+  <section class="hero">
+    <svg class="hero-watermark" viewBox="0 0 120 90" fill="var(--ink)" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M60 8 L67 26 L60 34 L53 26 Z"/>
+      <path d="M53 26 L10 52 L32 58 L58 46 Z"/>
+      <path d="M67 26 L110 52 L88 58 L62 46 Z"/>
+    </svg>
+    <div class="eyebrow">Furious Falcons · 4328</div>
+    <h1 class="hero-title">Built to soar.<br><em>Wired</em> to win.</h1>
+    <p class="hero-sub">The official page for the Furious Falcons robotics program split between Foster and Tomas High Schools, a team rebuilt for greatness.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">15</div><div class="lbl">Week Build</div></div>
+      <div class="stat"><div class="num">01</div><div class="lbl">Subteam</div></div>
+      <div class="stat"><div class="num">01</div><div class="lbl">Falcon</div></div>
+    </div>
+  </section>
+
+  <svg class="trace-divider" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 14 L400 14 L420 4 L460 4 L480 14 L1200 14" stroke="var(--line)" stroke-width="1" fill="none"/>
+    <circle cx="420" cy="4" r="3" fill="var(--falcon-gold)"/>
+    <circle cx="460" cy="4" r="3" fill="var(--falcon-gold)"/>
+  </svg>
+
+  
 </body>
 </html>
