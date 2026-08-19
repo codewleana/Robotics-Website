@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Furious Falcons Robotics — Concept</title>
+<title>Furious Falcons Robotics — Team 4328</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -42,12 +43,13 @@
   }
   a{color:inherit;}
   :focus-visible{outline:2px solid var(--falcon-green-bright); outline-offset:3px;}
+  img{max-width:100%; display:block;}
 
   /* ---------- HEADER ---------- */
   .site-header{
     background:var(--header-bg);
     color:var(--header-fg);
-    padding:18px clamp(20px,5vw,56px);
+    padding:16px clamp(20px,5vw,56px);
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -62,7 +64,14 @@
     align-items:center;
     gap:14px;
   }
-  .brand svg{ width:44px; height:34px; display:block; }
+  .brand .logo-mark{
+    width:44px;
+    height:44px;
+    border-radius:8px;
+    background:rgba(255,255,255,.08);
+    padding:5px;
+    object-fit:contain;
+  }
   .brand-text{ line-height:1; }
   .brand-text .name{
     font-size:clamp(18px,2.6vw,24px);
@@ -75,6 +84,22 @@
     letter-spacing:.18em;
     margin-top:3px;
   }
+  .site-nav{
+    display:flex;
+    gap:clamp(16px,2.5vw,32px);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .site-nav a{
+    text-decoration:none;
+    color:rgba(255,255,255,.82);
+    padding-bottom:3px;
+    border-bottom:1px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .site-nav a:hover{ color:#fff; border-color:var(--header-accent); }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -83,13 +108,31 @@
     overflow:hidden;
     border-bottom:1px solid var(--line);
   }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:42px 42px;
+    background-position:-1px -1px;
+    -webkit-mask-image:linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+            mask-image:linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:1;
+  }
   .hero-watermark{
     position:absolute;
-    right:-40px;
+    right:clamp(-40px,-2vw,20px);
     top:50%;
     transform:translateY(-50%);
-    width:min(46vw,520px);
-    opacity:.05;
+    width:min(30vw,320px);
+    opacity:.8;
     pointer-events:none;
   }
   .eyebrow{
@@ -143,10 +186,10 @@
     padding:clamp(50px,8vw,90px) clamp(20px,5vw,56px);
     border-bottom:1px solid var(--line);
   }
-  .section.tint{ 
-    background:var(--tint); 
+  .section.tint{
+    background:var(--tint);
     padding-top:clamp(64px,10vw,120px);
-}
+  }
 
   .split-grid{
     display:grid;
@@ -188,6 +231,7 @@
   }
   .card h3{ font-size:20px; margin-top:14px; }
   .card p{ color:var(--steel); font-size:14px; line-height:1.6; margin-top:10px; }
+  .card p a{ color:var(--falcon-green); font-weight:600; text-decoration:underline; text-underline-offset:2px; }
 
   /* ---------- CTA ---------- */
   .cta{
@@ -218,7 +262,7 @@
 
   /* ---------- FOOTER ---------- */
   footer{
-    padding:26px clamp(20px,5vw,56px);
+    padding:22px clamp(20px,5vw,56px);
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -228,12 +272,13 @@
     flex-wrap:wrap;
     border-top:1px solid var(--line);
   }
-  footer svg{ width:22px; height:17px; opacity:.4; }
+  footer .foot-logo{ width:26px; height:26px; opacity:.55; object-fit:contain; }
 
   @media (max-width:760px){
     .split-grid{ grid-template-columns:1fr; }
     .cards{ grid-template-columns:1fr; }
     .site-header{ flex-wrap:wrap; }
+    .site-nav{ order:3; width:100%; justify-content:space-between; padding-top:6px; }
   }
   @media (prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto; }
@@ -245,40 +290,31 @@
 
 <header class="site-header" id="siteHeader">
   <div class="brand">
-    <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M60 8 L67 26 L60 34 L53 26 Z" fill="currentColor"/>
-      <path d="M53 26 L10 52 L32 58 L58 46 Z" fill="currentColor"/>
-      <path d="M67 26 L110 52 L88 58 L62 46 Z" fill="currentColor"/>
-      <g stroke="var(--header-accent)" stroke-width="2" fill="none">
-        <path d="M10 52 L2 52 L2 44"/>
-        <path d="M110 52 L118 52 L118 60"/>
-        <path d="M60 34 L60 20"/>
-      </g>
-      <circle cx="2" cy="44" r="2.5" fill="var(--header-accent)"/>
-      <circle cx="118" cy="60" r="2.5" fill="var(--header-accent)"/>
-      <circle cx="60" cy="20" r="2.5" fill="var(--header-accent)"/>
-    </svg>
+    <img class="logo-mark" src="images/team-logo.png" alt="Furious Falcons Robotics logo">
     <div class="brand-text">
       <div class="name">Furious Falcons</div>
-      <div class="tag">Robotics Team</div>
+      <div class="tag">Robotics Team 4328</div>
     </div>
   </div>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="#history">History</a>
+    <a href="#join">Join</a>
+    <a href="#about">About</a>
+  </nav>
 </header>
 
 <main>
   <section class="hero">
-    <svg class="hero-watermark" viewBox="0 0 120 90" fill="var(--ink)" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M60 8 L67 26 L60 34 L53 26 Z"/>
-      <path d="M53 26 L10 52 L32 58 L58 46 Z"/>
-      <path d="M67 26 L110 52 L88 58 L62 46 Z"/>
-    </svg>
-    <div class="eyebrow">Furious Falcons · 4328</div>
-    <h1 class="hero-title">Built to soar.<br><em>Wired</em> to win.</h1>
-    <p class="hero-sub">The official website for the Furious Falcons robotics program split between Foster and Tomas High Schools, a team rebuilt for greatness.</p>
-    <div class="stat-row">
-      <div class="stat"><div class="num">15</div><div class="lbl">Week Build</div></div>
-      <div class="stat"><div class="num">01</div><div class="lbl">Subteam</div></div>
-      <div class="stat"><div class="num">01</div><div class="lbl">Falcon</div></div>
+    <div class="hero-inner">
+      <img class="hero-watermark" src="images/transparent-logo.svg" alt="" aria-hidden="true">
+      <div class="eyebrow">Furious Falcons · 4328</div>
+      <h1 class="hero-title">Built to soar.<br><em>Wired</em> to win.</h1>
+      <p class="hero-sub">The official site of the Furious Falcons, the combined FIRST Robotics Competition program of Foster and Tomas High Schools — rebuilt for greatness.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="num">2012</div><div class="lbl">Founded</div></div>
+        <div class="stat"><div class="num">2</div><div class="lbl">Schools, One Team</div></div>
+        <div class="stat"><div class="num">15</div><div class="lbl">Week Build Season</div></div>
+      </div>
     </div>
   </section>
 
@@ -288,33 +324,33 @@
     <circle cx="460" cy="4" r="3" fill="var(--falcon-gold)"/>
   </svg>
 
-  <section class="section">
+  <section class="section" id="history">
     <div class="split-grid">
       <h2>History of the Furious Falcons</h2>
       <div class="split-copy">
-        <p>The Furious Falcons were founded in 2012 with the goal of creating a strong robotics program at Foster High School, which later expanded into Tomas High School.</p>
-        <p>Over the years, we have grown into a successful team that has competed in various regional and national competitions, earning recognition for our innovative designs and strong work ethic.</p>
+        <p>The Furious Falcons were founded in 2012 with the goal of building a strong robotics program at Foster High School, later expanding to include students from Tomas High School.</p>
+        <p>Since then, we've grown into a competitive team that has taken part in regional and national events, earning recognition for innovative designs and a strong work ethic.</p>
       </div>
     </div>
   </section>
 
-  <section class="section" style="border-bottom:none; padding-bottom:0;">
+  <section class="section" id="join" style="border-bottom:none; padding-bottom:0;">
     <h3 style="font-size:clamp(26px,3.4vw,36px); margin-bottom:clamp(24px,4vw,48px);">How to Join</h3>
     <div class="cards">
       <div class="card">
-        <div class="idx mono">01 / Communicate</div>
-        <h3>Speak to Sonnier</h3>
-        <p>Email or go speak to Mr. Sonnier at Tomas, room 204. Let him know you're interested in joining the team.</p>
+        <div class="idx mono">01 / Reach Out</div>
+        <h3>Talk to Mr. Sonnier</h3>
+        <p>Email or stop by Mr. Sonnier's room, 204, at Tomas High School, and let him know you're interested in joining the team.</p>
       </div>
       <div class="card">
-        <div class="idx mono">02 / Donate</div>
-        <h3>Pay your fee</h3>
-        <p>Everyone on the team must pay a $00 registration fee to participate in competitions and events.</p>
+        <div class="idx mono">02 / Register</div>
+        <h3>Cover your fee</h3>
+        <p>Members pay a registration fee to help cover competition and event costs — ask Mr. Sonnier for the current amount.</p>
       </div>
       <div class="card">
-        <div class="idx mono">03 / Participate</div>
-        <h3>Do your job</h3>
-        <p>Once you're on the team, contribute actively to projects and meetings.</p>
+        <div class="idx mono">03 / Show Up</div>
+        <h3>Get to work</h3>
+        <p>Once you're on the team, contribute actively to builds, projects, and meetings.</p>
       </div>
     </div>
   </section>
@@ -323,29 +359,25 @@
     <path d="M0 14 L1200 14" stroke="var(--line)" stroke-width="1" fill="none"/>
   </svg>
 
-  <section class="section tint">
+  <section class="section tint" id="about">
     <div class="split-grid">
       <h2>Who the Furious Falcons Are</h2>
       <div class="split-copy">
-        <p>The Furious Falcons are a high school robotics team based in Foster and Tomas High Schools located in Richmond, Texas. We are dedicated to building innovative robots for competition and community engagement.</p>
-        <p>We believe in the power of STEM education and strive to create a supportive environment where students can learn, grow, and excel in the field of robotics.</p>
+        <p>The Furious Falcons are a high school robotics team spanning Foster and Tomas High Schools in Richmond, Texas. We build competition robots and engage with our community along the way.</p>
+        <p>We believe in the power of STEM education and work to create a supportive environment where students can learn, grow, and excel in robotics.</p>
       </div>
     </div>
   </section>
 
   <section class="cta">
     <h2>One team. <span class="accent">One falcon.</span></h2>
-    <a class="cta-btn" href="#siteHeader">Back to top ↑</a>
+    <a class="cta-btn" href="#">Back to top ↑</a>
   </section>
 </main>
 
 <footer>
   <div class="mono">Furious Falcons Robotics — Team 4328</div>
-  <svg viewBox="0 0 120 90" fill="var(--ink)" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M60 8 L67 26 L60 34 L53 26 Z"/>
-    <path d="M53 26 L10 52 L32 58 L58 46 Z"/>
-    <path d="M67 26 L110 52 L88 58 L62 46 Z"/>
-  </svg>
+  <img class="foot-logo" src="images/transparent-logo.svg" alt="Furious Falcons Robotics logo">
 </footer>
 
 </body>
