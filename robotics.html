@@ -15,11 +15,15 @@
     --falcon-green:#146c43;
     --falcon-green-bright:#1f9d5a;
     --falcon-gold:#e0bd1f;
+    --falcon-gold-bright:#f2cf3a;
     --steel:#6b7472;
     --line:#e4e7e5;
     --header-bg: var(--falcon-green);
     --header-fg: #ffffff;
     --header-accent: var(--falcon-gold);
+    --radius:6px;
+    --shadow-md:0 16px 32px -18px rgba(14,20,18,.3);
+    --space-section:clamp(64px,9vw,108px);
   }
 
   *{box-sizing:border-box;}
@@ -44,20 +48,47 @@
   a{color:inherit;}
   :focus-visible{outline:2px solid var(--falcon-green-bright); outline-offset:3px;}
   img{max-width:100%; display:block;}
+  .container{ width:100%; }
+
+  /* ---------- BUTTONS ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    padding:14px 28px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .btn-primary{ background:var(--falcon-green); color:#fff; }
+  .btn-primary:hover{ background:var(--ink); transform:translateY(-1px); }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+  .btn-ghost:hover{ border-color:var(--falcon-green); color:var(--falcon-green); }
+  .btn-gold{ background:var(--falcon-gold); color:var(--ink); }
+  .btn-gold:hover{ background:var(--falcon-gold-bright); transform:translateY(-1px); }
 
   /* ---------- HEADER ---------- */
   .site-header{
     background:var(--header-bg);
     color:var(--header-fg);
     padding:16px clamp(20px,5vw,56px);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
     box-shadow:0 1px 0 rgba(0,0,0,.08);
     position:sticky;
     top:0;
     z-index:10;
+  }
+  .site-header .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
   }
   .brand{
     display:flex;
@@ -82,7 +113,7 @@
     font-weight:500;
     color:var(--header-accent);
     letter-spacing:.18em;
-    margin-top:3px;
+    margin-top:4px;
   }
   .site-nav{
     display:flex;
@@ -104,7 +135,7 @@
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
-    padding:clamp(64px,10vw,130px) clamp(20px,5vw,56px) clamp(56px,8vw,96px);
+    padding:clamp(72px,11vw,140px) clamp(20px,5vw,56px) clamp(64px,9vw,104px);
     overflow:hidden;
     border-bottom:1px solid var(--line);
   }
@@ -132,7 +163,7 @@
     top:50%;
     transform:translateY(-50%);
     width:min(30vw,320px);
-    opacity:.8;
+    opacity:.85;
     pointer-events:none;
   }
   .eyebrow{
@@ -152,7 +183,7 @@
     display:inline-block;
   }
   h1.hero-title{
-    font-size:clamp(42px,7.5vw,88px);
+    font-size:clamp(44px,7.5vw,90px);
     font-weight:700;
     line-height:.96;
     max-width:14ch;
@@ -168,28 +199,31 @@
     margin-top:24px;
     line-height:1.65;
   }
-  .stat-row{
+  .hero-actions{
     display:flex;
-    gap:clamp(24px,4vw,56px);
-    margin-top:48px;
+    gap:14px;
+    margin-top:36px;
     flex-wrap:wrap;
   }
-  .stat{ border-left:2px solid var(--falcon-gold); padding-left:14px; }
-  .stat .num{ font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:500; }
-  .stat .lbl{ font-size:11px; color:var(--steel); letter-spacing:.1em; text-transform:uppercase; margin-top:4px; }
+  .stat-row{
+    display:flex;
+    gap:clamp(28px,4vw,64px);
+    margin-top:56px;
+    flex-wrap:wrap;
+  }
+  .stat{ border-left:2px solid var(--falcon-gold); padding-left:16px; }
+  .stat .num{ font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:500; line-height:1; }
+  .stat .lbl{ font-size:11px; color:var(--steel); letter-spacing:.1em; text-transform:uppercase; margin-top:6px; }
 
   /* ---------- TRACE DIVIDER ---------- */
   .trace-divider{ display:block; width:100%; height:28px; }
 
-  /* ---------- ABOUT/HISTORY ---------- */
+  /* ---------- SECTIONS ---------- */
   .section{
-    padding:clamp(50px,8vw,90px) clamp(20px,5vw,56px);
+    padding:var(--space-section) clamp(20px,5vw,56px);
     border-bottom:1px solid var(--line);
   }
-  .section.tint{
-    background:var(--tint);
-    padding-top:clamp(64px,10vw,120px);
-  }
+  .section.tint{ background:var(--tint); }
 
   .split-grid{
     display:grid;
@@ -198,11 +232,14 @@
     align-items:start;
   }
   .split-grid h2{
-    font-size:clamp(26px,3.4vw,36px);
+    font-size:clamp(26px,3.4vw,38px);
     max-width:13ch;
   }
   .split-copy{ color:var(--steel); font-size:15.5px; line-height:1.75; max-width:56ch; }
   .split-copy p + p{ margin-top:14px; }
+
+  .section-head{ margin-bottom:clamp(32px,5vw,56px); }
+  .section-head h2,.section-head h3{ font-size:clamp(26px,3.4vw,38px); }
 
   /* ---------- CARDS ---------- */
   .cards{
@@ -211,58 +248,110 @@
     gap:1px;
     background:var(--line);
     border:1px solid var(--line);
-    margin-bottom:clamp(40px,6vw,80px);
   }
   .card{
     background:var(--white);
-    padding:32px 26px;
+    padding:34px 28px;
     position:relative;
     border-top:2px solid transparent;
-    transition:border-color .2s ease, transform .2s ease;
+    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
   }
   .card:hover{
     border-top-color:var(--falcon-green);
-    transform:translateY(-2px);
+    transform:translateY(-3px);
+    box-shadow:var(--shadow-md);
+    z-index:1;
   }
   .card .idx{
     font-family:'JetBrains Mono',monospace;
     font-size:11px;
     color:var(--falcon-gold);
   }
-  .card h3{ font-size:20px; margin-top:14px; }
-  .card p{ color:var(--steel); font-size:14px; line-height:1.6; margin-top:10px; }
+  .card h3{ font-size:21px; margin-top:16px; }
+  .card p{ color:var(--steel); font-size:14px; line-height:1.65; margin-top:10px; }
   .card p a{ color:var(--falcon-green); font-weight:600; text-decoration:underline; text-underline-offset:2px; }
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter{
+    background:var(--ink);
+    color:#fff;
+    padding:var(--space-section) clamp(20px,5vw,56px);
+    position:relative;
+    overflow:hidden;
+  }
+  .newsletter::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:42px 42px;
+    pointer-events:none;
+  }
+  .newsletter .container{ position:relative; z-index:1; }
+  .newsletter-inner{ max-width:640px; }
+  .newsletter .eyebrow{ color:var(--falcon-green-bright); }
+  .newsletter h2{
+    font-size:clamp(28px,4vw,44px);
+    max-width:16ch;
+  }
+  .newsletter p.sub{
+    color:rgba(255,255,255,.65);
+    font-size:15px;
+    line-height:1.65;
+    margin-top:16px;
+    max-width:48ch;
+  }
+  .newsletter-form{
+    display:flex;
+    gap:10px;
+    margin-top:32px;
+    flex-wrap:wrap;
+  }
+  .newsletter-form input[type="email"]{
+    flex:1 1 260px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.2);
+    color:#fff;
+    padding:14px 16px;
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    border-radius:var(--radius);
+  }
+  .newsletter-form input[type="email"]::placeholder{ color:rgba(255,255,255,.4); }
+  .newsletter-form input[type="email"]:focus-visible{
+    outline:2px solid var(--falcon-gold);
+    outline-offset:2px;
+    border-color:transparent;
+  }
+  .newsletter-note{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:rgba(255,255,255,.4);
+    margin-top:14px;
+    letter-spacing:.02em;
+  }
 
   /* ---------- CTA ---------- */
   .cta{
-    padding:clamp(64px,10vw,120px) clamp(20px,5vw,56px);
+    padding:var(--space-section) clamp(20px,5vw,56px);
     text-align:center;
   }
   .cta h2{
-    font-size:clamp(32px,5vw,54px);
+    font-size:clamp(34px,5vw,56px);
     max-width:16ch;
     margin:0 auto;
   }
   .cta h2 .accent{ color:var(--falcon-green); }
-  .cta-btn{
-    display:inline-block;
-    margin-top:32px;
-    background:var(--ink);
-    color:#fff;
-    padding:14px 32px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:12px;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    text-decoration:none;
-    border-radius:2px;
-    transition:background .2s ease, transform .2s ease;
-  }
-  .cta-btn:hover{ background:var(--falcon-green); transform:translateY(-1px); }
+  .cta .btn{ margin-top:32px; }
 
   /* ---------- FOOTER ---------- */
   footer{
-    padding:22px clamp(20px,5vw,56px);
+    padding:24px clamp(20px,5vw,56px);
+    border-top:1px solid var(--line);
+  }
+  footer .container{
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -270,46 +359,55 @@
     font-size:12px;
     color:var(--steel);
     flex-wrap:wrap;
-    border-top:1px solid var(--line);
   }
   footer .foot-logo{ width:26px; height:26px; opacity:.55; object-fit:contain; }
 
   @media (max-width:760px){
     .split-grid{ grid-template-columns:1fr; }
     .cards{ grid-template-columns:1fr; }
-    .site-header{ flex-wrap:wrap; }
+    .site-header .container{ flex-wrap:wrap; }
     .site-nav{ order:3; width:100%; justify-content:space-between; padding-top:6px; }
+    .hero-actions .btn,
+    .newsletter-form button{ flex:1 1 100%; justify-content:center; }
+    .hero-watermark{ display:none; }
   }
   @media (prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto; }
-    .card, .cta-btn{ transition:none; }
+    .card, .btn{ transition:none; }
   }
 </style>
 </head>
 <body>
 
 <header class="site-header" id="siteHeader">
-  <div class="brand">
-    <img class="logo-mark" src="images/team-logo.png" alt="Furious Falcons Robotics logo">
-    <div class="brand-text">
-      <div class="name">Furious Falcons</div>
-      <div class="tag">Robotics Team 4328</div>
+  <div class="container">
+    <div class="brand">
+      <img class="logo-mark" src="images/team-logo.png" alt="Furious Falcons Robotics logo">
+      <div class="brand-text">
+        <div class="name">Furious Falcons</div>
+        <div class="tag">Robotics Team 4328</div>
+      </div>
     </div>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#history">History</a>
+      <a href="#join">Join</a>
+      <a href="#about">About</a>
+      <a href="#newsletter">Newsletter</a>
+    </nav>
   </div>
-  <nav class="site-nav" aria-label="Primary">
-    <a href="#history">History</a>
-    <a href="#join">Join</a>
-    <a href="#about">About</a>
-  </nav>
 </header>
 
 <main>
   <section class="hero">
-    <div class="hero-inner">
+    <div class="hero-inner container">
       <img class="hero-watermark" src="images/transparent-logo.svg" alt="" aria-hidden="true">
       <div class="eyebrow">Furious Falcons · 4328</div>
       <h1 class="hero-title">Built to soar.<br><em>Wired</em> to win.</h1>
       <p class="hero-sub">The official site of the Furious Falcons, the combined FIRST Robotics Competition program of Foster and Tomas High Schools — rebuilt for greatness.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#join">Join the Team</a>
+        <a class="btn btn-ghost" href="#history">Our History</a>
+      </div>
       <div class="stat-row">
         <div class="stat"><div class="num">2012</div><div class="lbl">Founded</div></div>
         <div class="stat"><div class="num">2</div><div class="lbl">Schools, One Team</div></div>
@@ -325,59 +423,88 @@
   </svg>
 
   <section class="section" id="history">
-    <div class="split-grid">
-      <h2>History of the Furious Falcons</h2>
-      <div class="split-copy">
-        <p>The Furious Falcons were founded in 2012 with the goal of building a strong robotics program at Foster High School, later expanding to include students from Tomas High School.</p>
-        <p>Since then, we've grown into a competitive team that has taken part in regional and national events, earning recognition for innovative designs and a strong work ethic.</p>
+    <div class="container">
+      <div class="split-grid">
+        <div>
+          <div class="eyebrow">Since 2012</div>
+          <h2>History of the Furious Falcons</h2>
+        </div>
+        <div class="split-copy">
+          <p>The Furious Falcons were founded in 2012 with the goal of building a strong robotics program at Foster High School, later expanding to include students from Tomas High School.</p>
+          <p>Since then, we've grown into a competitive team that has taken part in regional and national events, earning recognition for innovative designs and a strong work ethic.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="join" style="border-bottom:none; padding-bottom:0;">
-    <h3 style="font-size:clamp(26px,3.4vw,36px); margin-bottom:clamp(24px,4vw,48px);">How to Join</h3>
-    <div class="cards">
-      <div class="card">
-        <div class="idx mono">01 / Reach Out</div>
-        <h3>Talk to Mr. Sonnier</h3>
-        <p>Email or stop by Mr. Sonnier's room, E119, at Tomas High School, and let him know you're interested in joining the team.</p>
+  <section class="section" id="join">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Get Involved</div>
+        <h3>How to Join</h3>
       </div>
-      <div class="card">
-        <div class="idx mono">02 / Register</div>
-        <h3>Cover your fee</h3>
-        <p>Members pay a registration fee to help cover competition and event costs. Ask Mr. Sonnier for the current amount.</p>
-      </div>
-      <div class="card">
-        <div class="idx mono">03 / Show Up</div>
-        <h3>Get to work</h3>
-        <p>Once you're on the team, contribute actively to builds, projects, and meetings.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="idx mono">01 / Reach Out</div>
+          <h3>Talk to Mr. Sonnier</h3>
+          <p>Email or stop by Mr. Sonnier's room, E116, at Tomas High School, and let him know you're interested in joining the team.</p>
+        </div>
+        <div class="card">
+          <div class="idx mono">02 / Register</div>
+          <h3>Cover your fee</h3>
+          <p>Members pay a registration fee to help cover competition and event costs. Ask Mr. Sonnier for the current amount.</p>
+        </div>
+        <div class="card">
+          <div class="idx mono">03 / Show Up</div>
+          <h3>Get to work</h3>
+          <p>Once you're on the team, contribute actively to builds, projects, and meetings.</p>
+        </div>
       </div>
     </div>
   </section>
-
-  <svg class="trace-divider" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 14 L1200 14" stroke="var(--line)" stroke-width="1" fill="none"/>
-  </svg>
 
   <section class="section tint" id="about">
-    <div class="split-grid">
-      <h2>Who the Furious Falcons Are</h2>
-      <div class="split-copy">
-        <p>The Furious Falcons are a high school robotics team spanning Foster and Tomas High Schools in Richmond, Texas. We build competition robots and engage with our community along the way.</p>
-        <p>We believe in the power of STEM education and work to create a supportive environment where students can learn, grow, and excel in robotics.</p>
+    <div class="container">
+      <div class="split-grid">
+        <div>
+          <div class="eyebrow">The Program</div>
+          <h2>Who the Furious Falcons Are</h2>
+        </div>
+        <div class="split-copy">
+          <p>The Furious Falcons are a high school robotics team spanning Foster and Tomas High Schools in Richmond, Texas. We build competition robots and engage with our community along the way.</p>
+          <p>We believe in the power of STEM education and work to create a supportive environment where students can learn, grow, and excel in robotics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter" id="newsletter">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="eyebrow">Stay Connected</div>
+        <h2>Get Falcon updates in your inbox</h2>
+        <p class="sub">Build season progress, competition results, and ways to support the team — a few emails a season, nothing more.</p>
+        <form class="newsletter-form" action="#" method="POST">
+          <label for="newsletter-email" class="sr-only" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">Email address</label>
+          <input type="email" id="newsletter-email" name="email" placeholder="you@example.com" required>
+          <button class="btn btn-gold" type="submit">Subscribe</button>
+        </form>
+        <div class="newsletter-note">No spam. Unsubscribe anytime.</div>
       </div>
     </div>
   </section>
 
   <section class="cta">
     <h2>One team. <span class="accent">One falcon.</span></h2>
-    <a class="cta-btn" href="#">Back to top ↑</a>
+    <a class="btn btn-primary" href="#">Back to top ↑</a>
   </section>
 </main>
 
 <footer>
-  <div class="mono">Furious Falcons Robotics — Team 4328</div>
-  <img class="foot-logo" src="images/transparent-logo.svg" alt="Furious Falcons Robotics logo">
+  <div class="container">
+    <div class="mono">Furious Falcons Robotics — Team 4328</div>
+    <img class="foot-logo" src="images/transparent-logo.svg" alt="Furious Falcons Robotics logo">
+  </div>
 </footer>
 
 </body>
